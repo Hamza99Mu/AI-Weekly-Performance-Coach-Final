@@ -101,7 +101,7 @@ if result:
         for title, key in [("🟢 Keep Going", "keep_going"), ("🟡 Good", "good"), ("🔵 Best", "best")]:
             st.subheader(title)
             for item in x[key]:
-                st.write("• " + item)
+                st.write("• " + _safe_item(item))
 
     with tabs[4]:
         x = result["next_week_plan"]
