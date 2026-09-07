@@ -1,3 +1,7 @@
+def _safe_item(item):
+    if isinstance(item, dict):
+        return item.get("text") or item.get("description") or item.get("activity") or str(item)
+    return str(item)
 import json
 import streamlit as st
 from analyzer import analyze_week, extract_docx_text
@@ -95,10 +99,7 @@ if result:
         st.write(f'**Goal result:** {x["goal_result"]}')
         for item in x["key_observations"]:
             st.write("• " + item)
-def _safe_item(item):
-    if isinstance(item, dict):
-        return item.get("text") or item.get("description") or item.get("activity") or str(item)
-    return str(item)
+
     with tabs[3]:
         x = result["weekly_audit"]["categories"]
         for title, key in [("🟢 Keep Going", "keep_going"), ("🟡 Good", "good"), ("🔵 Best", "best")]:
